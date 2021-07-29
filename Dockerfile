@@ -4,7 +4,9 @@ WORKDIR /app
 
 ADD . /app
 
-RUN apt-get update && \
+RUN sed -i "s@http://deb.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list && \
+    sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list && \
+    apt-get update && \
     # install prequired modules to support install of mlflow and related components
     apt-get install -y default-libmysqlclient-dev build-essential curl \
     # cmake and protobuf-compiler required for onnx install
