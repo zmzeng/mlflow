@@ -13,10 +13,10 @@ RUN sed -i "s@http://deb.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sou
     cmake protobuf-compiler &&  \
     conda install python=3.6 && \
     # install required python packages
-    pip install -r dev-requirements.txt --no-cache-dir && \
-    pip install -r test-requirements.txt --no-cache-dir && \
+    pip install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple -r dev-requirements.txt --no-cache-dir && \
+    pip install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple -r test-requirements.txt --no-cache-dir && \
     # install mlflow in editable form
-    pip install --no-cache-dir -e . && \
+    pip install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple --no-cache-dir -e . && \
     # mkdir required to support install openjdk-11-jre-headless
     mkdir -p /usr/share/man/man1 && apt-get install -y openjdk-11-jre-headless && \
     # install npm for node.js support
